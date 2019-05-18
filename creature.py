@@ -1,6 +1,8 @@
 import random
 
 #creates an object class known as species
+
+#skeleton 1 = exo, 2 = endo, 3 =none
 class species:
     def __init__(self, name, skin, body_shape, segments, appendages, skeleton, size, movement, eye_count, eating, hunting, defense, reproduction, mating, babies, care, enviornment):
 
@@ -22,12 +24,23 @@ class species:
             self.care = care
             self.enviornment = enviornment
             #********change to calculate from the information about skin, skelton, and defense
-            self.health = random.randint(1,100)
+            #calculates a health mutliplier if the skin has scales
+            if self.skin == 1 or self.skin == 2:
+                health_temp_1 = 10
+            else:
+                health_temp_1 = 5
+
+            health_temp_2 = self.size
+
+            health_temp_3 = self.skeleton * 2 
+
+            health_temp_4 = self.defense
+
+            self.health = ((health_temp_1 + health_temp_2) * health_temp_3 + health_temp_4) * 10
+
             self.strength = random.randint(50,100)
             #rate of offspring production
             #####***********************change this to be involved with wether or not a species reproduces via eggs or live birth
-            self.rate = random.randint(10000,1000000)
-            #population size of a species
             self.population = random.randint(100,1000)
 '''
     def reproduce(self):
@@ -38,15 +51,17 @@ class species:
         self.population = round(self.population)
 '''
 
+#our reproduce function that takes in the specific species as an objects
 def reproduce(species):
     #random percentage from 10% - 60% of the population that will reproduce
-    parent_percentage = (random.randint(1,6))/10
+    num_parent = (random.randint(10,60))
     #useless variable assignmnet
     population = species.population
-    num_offspring = population * parent_percentage
+    #two parents to make one child
+    num_offspring = num_parent/2
     #if the species' 'babies' column has a even number than 3x the offspring, if not then * 0.9
     if species.babies % 2 == 0:
-        num_offspring *= 3
+        num_offspring *= random.randint(3,6)
     else:
         num_offspring *= 0.9
 
@@ -55,27 +70,20 @@ def reproduce(species):
     species.population = round(species.population)
 
 #this is our natural disaster / mass extinction event calculator
-def bad_boi():
+
+#a and b are both values decided outside the loop,  a is recommended to have a random int from 0,2, b is recommended to have a random int from 0,100000
+def bad_boi(a, b):
     #a hurricane and a mass extinction event CANNOT happen in the same generation
-    #category 1 events are things like hurricanes or typhoons; very common but does do that much damage;  reduces each species' population by 3%
-    cat_1_true = None
+    #category 1 events are things like hurricanes or typhoons; very common but does do that much damage;  reduces each species' population by 10%
     #1 in 3 chance of a hurricane
-    cat_1 = random.randint(0,2)
-    if random.randint == 1:
-        cat_1_true = True
+    if a == 1:
         return 1
     else:
-        cat_1_true = False
-
-        cat_2_true = None
         #1 in 1000000 chance of a mass extinction ONLY IF there is not a hurricane
-        cat_2 = random.randint(1,1000000)
-        if cat_2 == 999:
-            cat_2_true = True
+        if b == 999:
             print('a mass extinction event has occured!! Each species population decreased by 99.9%')
             return 2
         else:
-            cat_2_true = False
             return 0
 
 def compete(species_x, species_y):
