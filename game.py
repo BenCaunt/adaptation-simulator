@@ -2,6 +2,7 @@
 from creature import reproduce
 from creature import species
 from creature import bad_boi
+from creature import compete
 
 #other libraries that we may or may not need
 import random
@@ -50,7 +51,7 @@ def main():
 			#the population is multiplied by the percentage that was defined in the hurricane_multi variable
 			yeetus.population = round(yeetus.population * x[0])
 			carmen.population = round(carmen.population * x[1])
-			print('a hurricane has occured!!!;  Each species population has been decreased by an average of {0}%'.format(sum(x)/len(x)))
+			print('a hurricane has occured!!!;  Each species population has been decreased by an average of ~{0}%'.format(round(100-(100*((sum(x)/len(x)))))))
 
 		elif event == 2:
 			yeetus.population = round(yeetus.population * extinction_multi)
