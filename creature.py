@@ -106,6 +106,7 @@ def bad_boi(a, b):
             return 0
 
 def compete(species_lst):
+    global winner
     #time of day of the conflict,  during the night creatures with ultrasoud (no eyes) have a 3x bonus but are reduced by 10% during the day
     time = random.uniform(1,24)
     #randomly picks the first species invovled in the conflict
@@ -188,8 +189,7 @@ def compete(species_lst):
         if h2 <= 0:
             live2 = False
         else:
-            pass
-            winner = first.name
+            winner = first
             second.population -= 1
 
         #creature 2 has survived and retaliates
@@ -197,15 +197,11 @@ def compete(species_lst):
         if h1 <= 0:
             live2 = False
         else:
-            pass
-            winner = second.name
+            winner = second
             first.population -= 1
 
-    print(time)
-    print(pick_1.name, pick_2.name)
-    print(pick_1 == pick_2)
 
-    print(winner)
+    print("winner of this conflict is {0}".format(winner.name))
 
 
 def main():
