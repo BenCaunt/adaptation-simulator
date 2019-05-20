@@ -17,6 +17,12 @@ import matplotlib.pyplot as plt
 yeetus = species("ya boi chips ahoy",3,6,2,10,3,4,4,0,4,6,5,6,5,4,4,2)
 carmen = species("carmen ;)" ,5,6,0,0,2,1,3,0,1,2,3,6,2,6,5,1)
 
+#all species in a population
+biosphere = [yeetus,carmen]
+
+#total in biosphere
+species_num = 2
+
 #multiplier applied to each species population when a hurricane event occurs
 hurricane_multi = 0.90
 hurricane_prob = 3
@@ -24,15 +30,14 @@ hurricane_prob = 3
 extinction_multi = 0.01
 extinction_prob = 10000
 
-
-#one easy function that reproduces every species while just taking up one line inside the for-loop
-def reproduce_all():
-	reproduce(yeetus)
-	reproduce(carmen)
-
 def main():
-	for generation in range(1000):
-		species_num = 2
+	for generation in range(1):
+
+		#one easy function that reproduces every species while just taking up one line inside the for-loop
+		def reproduce_all():
+			for i in range(species_num):
+				reproduce(biosphere[i])
+		print(f"population in biosphere is {species_num} organisms")
 
 		#calling the reproduce all function we created earlier
 		reproduce_all()
@@ -57,12 +62,26 @@ def main():
 			yeetus.population = round(yeetus.population * extinction_multi)
 			carmen.population = round(yeetus.population * extinction_multi)
 			print('a mass-extinction event has occured; each species population has been decreased by 0.1%')
+		else:
+			pass
+
+		#loop for each time a conflict occurs
+		for i in range(1000):
+			#species conflict, see creature.py for more information
+			compete(biosphere)
 
 		population_total = sum([carmen.population, yeetus.population])
 		num_conflict = (0.1)*population_total
 		print(f"Ben's population is: {yeetus.population}")
 		print(f"Carmen's population is: {carmen.population}")
 		print(f"total population is: {population_total}")
+
+		#prevent extinct species from reproducing by removing them from the biosphere
+		for i in range(species_num):
+			if biosphere[i].population <= 0:
+				biosphere.pop(i)
+			else:
+				pass
 
 if __name__ == '__main__':
 	main()
