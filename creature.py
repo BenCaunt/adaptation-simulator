@@ -52,12 +52,12 @@ class species:
             if self.hunting == 3:
                 strength_3 = 2
             elif self.hunting == 5:
-                strength_3 = 4
+                strength_3 = 3
             else:
                 strength_3 = 1
 
 
-            self.strength = (strength_1 * strength_2 * strength_3)
+            self.strength = (strength_1 + strength_2 * strength_3)
             #rate of offspring production
             #####***********************change this to be involved with wether or not a species reproduces via eggs or live birth
             self.population = random.randint(100,1000)
@@ -123,11 +123,11 @@ def compete(species_lst):
 
     #determine ultrasound multiplier
     if time <= 3:
-        print("ultrasound gets a 3x strength advantage!!!")
-        ultrasound_bonus = 3
+        print("ultrasound gets a 7x strength advantage!!!")
+        ultrasound_bonus = 6
     elif time >= 22:
-        print("ultrasound gets a 3x strength advantage!!!")
-        ultrasound_bonus = 3
+        print("ultrasound gets a 7x strength advantage!!!")
+        ultrasound_bonus = 6
     else:
         print("ultrasoud gets a 10% penalty!")
         ultrasound_bonus = 0.9
@@ -203,6 +203,23 @@ def compete(species_lst):
 
     print("winner of this conflict is {0}".format(winner.name))
 
+def mutate(biosphere):
+    #creates random number between 1 and 100 and if that number is == to 69 or 70 then mutate the chosen species
+    does_evolve = random.randint(1,100)
+    if does_evolve == 69 or does_evolve == 70:
+        #ranomly chooses a species from the biosphere to be mutated
+        chosen_boi = random.choice(biosphere)
+        #randomly generates possitive or negative multipliers to multiply to the strength and health values
+        rand_strength_multi = random.uniform(0.5,6)
+        rand_health_multi = random.uniform(0.5,6)
+
+        #multiplys the two values we created earlier to the strength and health values
+        chosen_boi.strength *= rand_strength_multi
+        chosen_boi.health *= rand_health_multi
+    else:
+        pass
+
+
 
 def main():
     bob = species("bob",3,4,5,2,4,8,1,2,4,5,6,2,3,4,1,6)
@@ -212,6 +229,10 @@ def main():
 
     compete(x)
 
+    print(x[1].strength)
+    print(x[2].strength)
+    print(x[1].health)
+    print(x[2].health)
 #runs the main loop
 if __name__ == '__main__':
 	main()
