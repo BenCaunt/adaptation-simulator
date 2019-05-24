@@ -72,21 +72,28 @@ class species:
 
 #our reproduce function that takes in the specific species as an objects
 def reproduce(species):
-    #random percentage from 10% - 60% of the population that will reproduce
-    num_parent = (random.randint(10,60))
-    #useless variable assignmnet
-    population = species.population
-    #two parents to make one child
-    num_offspring = num_parent/2
-    #if the species' 'babies' column has a even number than 3x the offspring, if not then * 0.9
-    if species.babies % 2 == 0:
-        num_offspring *= random.randint(3,6)
+    #precents species with population of 0 form reproducing and prevents negative things
+    if species.population < 0:
+        species.population = 0
     else:
-        num_offspring *= 0.9
+        #random percentage from 10% - 60% of the population that will reproduce
+        num_parent = (random.randint(10,60))
+        #useless variable assignmnet
+        population = species.population
+        #two parents to make one child
+        num_offspring = num_parent/2
+        #if the species' 'babies' column has a even number than 3x the offspring, if not then * 0.9
+        if species.babies % 2 == 0:
+            num_offspring *= random.randint(3,6)
+        else:
+            num_offspring *= 0.9
 
-    species.population += num_offspring
+        species.population += num_offspring
 
-    species.population = round(species.population)
+        species.population = round(species.population)
+
+
+
 
 #this is our natural disaster / mass extinction event calculator
 
@@ -206,7 +213,7 @@ def compete(species_lst):
 def mutate(biosphere):
     #creates random number between 1 and 100 and if that number is == to 69 or 70 then mutate the chosen species
     does_evolve = random.randint(1,100)
-    if does_evolve == 69 or does_evolve == 70:
+    if does_evolve == 69 or does_evolve == 70 or does_evolve == 20:
         #ranomly chooses a species from the biosphere to be mutated
         chosen_boi = random.choice(biosphere)
         #randomly generates possitive or negative multipliers to multiply to the strength and health values
@@ -216,6 +223,7 @@ def mutate(biosphere):
         #multiplys the two values we created earlier to the strength and health values
         chosen_boi.strength *= rand_strength_multi
         chosen_boi.health *= rand_health_multi
+        print(f"{chosen_boi.name} has mutated!")
     else:
         pass
 
