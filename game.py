@@ -15,8 +15,7 @@ plt.style.use('ggplot')
 #herbivore = 1;  omnivore = 2;  carnivore = 3
 #skeleton 1 = exo, 2 = endo, 3 = none
 
-yeetus = species("ya boi chips ahoy",3,6,2,10,3,4,4,0,4,6,5,6,5,4,4,2)
-carmen = species("carmen ;)" ,5,6,0,0,2,1,3,0,1,2,3,6,2,6,5,1)
+bean = species("ya boi chips ahoy",3,6,2,10,3,4,4,0,4,6,5,6,5,4,4,2)
 david = species("tan line", 1, 1, 0, 3, 3, 1, 4, 10, 1, 4, 6, 2, 3, 2, 3, None)
 jacey = species("'Daemon Volantes'", 3, 6, 0, 2, 1, 3, 3, 0, 2, 2, 3, 5, 3, 3, 3, 5)
 ethan = species("Neotyrannus Satanus", 4, 2, 0, 2, 2, 6, 1, 2, 3, 4, 1 , 2, 6, 3, 3,4)
@@ -27,7 +26,7 @@ aiden = species("aiden", 5, 3, 12, 12, 4, 3, 2, 8, 2, 4, 6, 3, 4, 4, 4, 2)
 shep = species("Shep",4,5,0,6,2,6,4,10,3,2,5,3,2,4,5,6)
 
 #all species in a population
-biosphere = [yeetus,carmen,david,jacey,ethan,sarah,kaleigh, libby, aiden,shep]
+biosphere = [yeetus,david,jacey,ethan,sarah,kaleigh, libby, aiden,shep]
 
 #total in biosphere
 species_num = 10
@@ -63,7 +62,6 @@ def main():
 				x.append(random.uniform(1,0.5)) #  <<<<<wut is this character
 			#the population is multiplied by the percentage that was defined in the hurricane_multi variable
 			yeetus.population = round(yeetus.population * x[0])
-			carmen.population = round(carmen.population * x[1])
 			david.population = round(david.population * x[2])
 			jacey.population = round(jacey.population * x[3])
 			ethan.population = round(ethan.population * x[4])
@@ -76,7 +74,6 @@ def main():
 
 		elif event == 2:
 			yeetus.population = round(yeetus.population * extinction_multi)
-			carmen.population = round(carmen.population * extinction_multi)
 			david.population = round(david.population * extinction_multi)
 			jacey.population = round(jacey.population * extinction_multi)
 			ethan.population = round(ethan.population * extinction_multi)
@@ -96,14 +93,14 @@ def main():
 		for i in range(100):
 			mutate(biosphere)
 
-		population_total = sum([carmen.population, yeetus.population])
+		population_total = bean.population
 		num_conflict = (0.1)*population_total
 
 		for i in range(species_num):
 			print(f"{biosphere[i].name} has the population of {biosphere[i].population}")
 
-		x = [yeetus.name,carmen.name,david.name,jacey.name,ethan.name,sarah.name,kaleigh.name, libby.name, aiden.name, shep.name]
-		y = [yeetus.population,carmen.population,david.population,jacey.population,ethan.population,sarah.population,kaleigh.population, libby.population, aiden.population, shep.population]
+		x = [yeetus.name,david.name,jacey.name,ethan.name,sarah.name,kaleigh.name, libby.name, aiden.name, shep.name]
+		y = [yeetus.population,david.population,jacey.population,ethan.population,sarah.population,kaleigh.population, libby.population, aiden.population, shep.population]
 
 		plt.bar(x, y, color='teal')
 		plt.rcParams.update({'font.size': 20})
@@ -120,8 +117,8 @@ def main():
 if __name__ == '__main__':
 	main()
 
-	x = [yeetus.name,carmen.name,david.name,jacey.name,ethan.name,sarah.name,kaleigh.name, libby.name, aiden.name, shep.name]
-	y = [yeetus.population,carmen.population,david.population,jacey.population,ethan.population,sarah.population,kaleigh.population, libby.population, aiden.population, shep.population]
+	x = [yeetus.name,david.name,jacey.name,ethan.name,sarah.name,kaleigh.name, libby.name, aiden.name, shep.name]
+	y = [yeetus.population,david.population,jacey.population,ethan.population,sarah.population,kaleigh.population, libby.population, aiden.population, shep.population]
 
 	plt.bar(x, y, color='yellow')
 	plt.rcParams.update({'font.size': 35})
