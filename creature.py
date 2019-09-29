@@ -231,9 +231,8 @@ def mutate(biosphere):
 
 def main():
     bob = species("bob",3,4,5,2,4,8,1,2,4,5,6,2,3,4,1,6)
-    yeetus = species("ya boi chips ahoy",3,6,2,10,3,4,4,0,4,6,5,6,5,4,4,2)
-    carmen = species("carmen ;)" ,5,6,0,0,2,1,3,0,1,2,3,6,2,6,5,1)
-    x = [bob,yeetus,carmen]
+    test1 = species("ya boi chips ahoy",3,6,2,10,3,4,4,0,4,6,5,6,5,4,4,2)
+    x = [bob,test1]
 
     compete(x)
 
